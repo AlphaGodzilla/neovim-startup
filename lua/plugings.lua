@@ -12,6 +12,17 @@ packer.startup({
     use 'shaunsingh/nord.nvim'
     -- nvim-tree --
     use({ "nvim-tree/nvim-tree.lua", requires = "nvim-tree/nvim-web-devicons" })
+    -- bufferline (新增)
+    use({ "akinsho/bufferline.nvim", requires = { "nvim-tree/nvim-web-devicons", "moll/vim-bbye" }})
+    -- lualine (新增)
+    use({ "nvim-lualine/lualine.nvim", requires = { "nvim-tree/nvim-web-devicons" } })
+    use("arkav/lualine-lsp-progress")
+    -- telescope （新增）
+    use { 'nvim-telescope/telescope.nvim', requires = { "nvim-lua/plenary.nvim" } }
+    -- telescope extendtion show all http status code
+    use { 'barrett-ruth/telescope-http.nvim' }
+    use { 'glepnir/dashboard-nvim' }
+    use { 'preservim/nerdcommenter' }
   end,
   config = {
     -- 并发数限制
@@ -25,3 +36,14 @@ packer.startup({
     },
   }
 })
+
+
+pcall(
+  vim.cmd,
+  [[
+    augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerSync
+    augroup end
+  ]]
+)
