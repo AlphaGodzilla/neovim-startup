@@ -23,6 +23,7 @@ packer.startup({
     use { 'barrett-ruth/telescope-http.nvim' }
     use { 'glepnir/dashboard-nvim' }
     use { 'preservim/nerdcommenter' }
+    use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
   end,
   config = {
     -- 并发数限制
